@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Listings;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +16,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings',[
+        'heading' => 'Latest heading',
+        'listings' => Listings::all() 
+    ]);
 });
+
+Route::get('/find/{id}', function($id){
+    return view('listing',[
+        'listing' => Listings::find($id)
+    ]);
+});
+
+/*Route::get('/hello', function() {
+    return response('<h1>hello world</h1>')
+    ->header('Content-Type', 'text/plain');
+});
+
+Route::get('/post/{id}', function($i) {
+    return response('<h1>'.$i.'</h1>');
+});
+
+Route::get('/request', function(Request $request){
+    dd($request->name);
+});*/
