@@ -15,5 +15,9 @@ class Listings extends Model{
         {
             $query->where('tags','like','%' . request('tag') . '%');
         }
+        if($filters['search'] ?? false)
+        {
+            $query->where('title','like','%' . request('search') . '%');
+        }
     }
 }
