@@ -15,20 +15,19 @@ use App\Models\Listings;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//All listings
 Route::get('/', [ListingController::class, 'index']);
 
+//Single listing
 Route::get('/find/{listing}', [ListingController::class, 'show']);
 
-/*Route::get('/hello', function() {
-    return response('<h1>hello world</h1>')
-    ->header('Content-Type', 'text/plain');
-});
-
-Route::get('/post/{id}', function($i) {
-    return response('<h1>'.$i.'</h1>');
-});
-
-Route::get('/request', function(Request $request){
-    dd($request->name);
-});*/
+//Common Resource Routes :
+/*
+    index   - Show all listings
+    show    - Show single listing
+    create  - Show form to create new listing
+    store   - Store new listing
+    edit    - Show form to edit listing
+    update  - Update listing
+    destroy - Delete listing
+*/ 
