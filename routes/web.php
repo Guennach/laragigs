@@ -24,6 +24,9 @@ Route::get('/find/{listing}', [ListingController::class, 'show']);
 //Show create form
 Route::get('/listing/create', [ListingController::class, 'create']);
 
+//Store
+Route::post('/listings',[ListingController::class, 'store']);
+
 //Common Resource Routes :
 /*
     index   - Show all listings

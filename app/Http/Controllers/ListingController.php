@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listings;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
@@ -27,5 +28,24 @@ class ListingController extends Controller
     public function create()
     {
         return view('listing.create');
+    }
+
+    //Store listing
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([
+            'title'         => 'required',
+            'company'       => ['required', Rule::unique('listings', 'company')], // we pass to the rule::unique the name of table and name of field
+            'location'      => 'required',
+            'website'       => 'required',
+            'email'         => ['required', 'email'],
+            'tags'          => 'required',
+            'description'   => 'required'
+            
+        ]);
+        
+        Listings::create($formFields);
+
+        return redirect('/');
     }
 }
